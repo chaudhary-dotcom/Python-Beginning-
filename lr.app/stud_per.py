@@ -22,4 +22,14 @@ def predict_data(data):
     prediction = model.predict(preprocessed_data)
     return prediction[0]
 
+def main():
+    st.title('Student performance predication')
+    st.write('Enter your detail for get predication on your input')
+
+    hour_studied = st.number_input('Hours studied', min_value=1, max_value=10, value=5)
+
+if __name__ == '__main__':
+    main()
+
+
 
