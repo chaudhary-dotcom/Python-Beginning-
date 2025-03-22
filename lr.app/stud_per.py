@@ -28,7 +28,7 @@ def main():
 
     hour_studied = st.number_input('Hours studied', min_value=1, max_value=10, value=5)
     previous_score = st.number_input('Previous Scores', min_value=40, max_value=100, value=70)
-    Extracurricular_Activities = st.selectbox('Extracurricular Activities', 'Yes', 'No')
+    Extracurricular_Activities = st.selectbox('Extracurricular Activities', ['Yes', 'No'])
     Sleep_hours = st.number_input('Sleep Hours', min_value=4, max_value=10, value=7)
     Question_papers = st.number_input('Question Papers', min_value=0, max_value=10, value=5)
 
