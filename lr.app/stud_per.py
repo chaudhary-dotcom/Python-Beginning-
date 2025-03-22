@@ -27,7 +27,21 @@ def main():
     st.write('Enter your detail for get predication on your input')
 
     hour_studied = st.number_input('Hours studied', min_value=1, max_value=10, value=5)
+    previous_score = st.number_input('Previous Scores', min_value=40, max_value=100, value=70)
+    Extracurricular_Activities = st.selectbox('Extracurricular Activities', 'Yes', 'No')
+    Sleep_hours = st.number_input('Sleep Hours', min_value=4, max_value=10, value=7)
+    Question_papers = st.number_input('Question Papers', min_value=0, max_value=10, value=5)
 
+    if st.button('Predict_Your_Score'):
+        user_data = {
+            'Hours Studied': hour_studied,
+            'Previous Scores': previous_score,
+            'Extracurricular Activities': Extracurricular_Activities,
+            'Sleep Hours': Sleep_hours,
+            'Sample Question Papers Practiced': Question_papers
+        }
+        prediction =predict_data(user_data)
+        st.success(f'Your predication result is: ')
 if __name__ == '__main__':
     main()
 
