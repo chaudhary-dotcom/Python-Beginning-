@@ -2,8 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
-from sklearn.preprocessing import StandardScaler
-
+from sklearn.preprocessing import StandardScaler, LabelEncoder
 
 
 def load_model():
@@ -12,15 +11,16 @@ def load_model():
     return model, scaler, le
 
 def preprocessing_input_data(data, scaler, le):
-    data['Extracurricular Activities'] = le.fit_transform(data['Extracurricular Activities'])
-    df_transformed = scaler.transform(data)
+    data['Extracurricular Activities'] = le.transform([data['Extracurricular Activities']])[0]
+    df = pd.DataFrame([data])
+    df_transformed = scaler.transform(df)
     return df_transformed
 
 def predict_data(data):
     model, scaler, le = load_model()
     preprocessed_data = preprocessing_input_data(data, scaler, le)
     prediction = model.predict(preprocessed_data)
-    return prediction[0]
+    return round(prediction[0], 2)
 
 def main():
     st.title('Student performance predication')
@@ -40,11 +40,11 @@ def main():
             'Sleep Hours': Sleep_hours,
             'Sample Question Papers Practiced': Question_papers
         }
-        prediction =predict_data(user_data)
-        st.success(f'Your predication result is: ')
+        prediction = predict_data(user_data)
+        st.success(f'Your predication result is: {prediction}')
 if __name__ == '__main__':
     main()
 
-.
+
 
 
